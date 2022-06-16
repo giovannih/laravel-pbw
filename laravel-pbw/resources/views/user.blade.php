@@ -56,3 +56,37 @@
 <button class="btn btn-outline-light my-2 my-sm-0" type="submit" style="background-color: #A89B8C;border-color: #A89B8C;">Search</button>
 </form>
 @endsection
+@section('alert')
+@if(session()->has('message'))
+    @if(session()->get('message') == 'test')
+        <div class="col-lg-12 py-4 align-self-center">
+        <div class="alert alert-success alert-dismissible fade show text-light" role="alert" style="background-color: #A89B8C;border-color: #A89B8C;">
+        <b>Data Input is Successful</b>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        </div>
+    @endif
+    @if(session()->get('message') == 'edit')
+        <div class="col-lg-12 py-4 align-self-center">
+        <div class="alert alert-success alert-dismissible fade show" style="color: #161925; background-color: #FEF3AF;border-color: #FEF3AF;" role="alert">
+        <b>Data Edit is Successful</b>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        </div>
+    @endif
+    @if(session()->get('message') == 'delete')
+        <div class="col-lg-12 py-4 align-self-center">
+        <div class="alert alert-success alert-dismissible fade show text-light" style="background-color: #F72631;border-color: #F72631;" role="alert">
+        <b>Data Deletion is Successful</b>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        </div>
+    @endif
+@endif
+@endsection

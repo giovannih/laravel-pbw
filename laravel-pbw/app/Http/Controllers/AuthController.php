@@ -67,9 +67,9 @@ class AuthController extends Controller
     public function updateUser($id, Request $req){        
         $user = user::find($id);
         
-        $user->nik_user = $req->nim;
-        $user->nama_user = $req->nama;
-        $user->no_hp = $req->gender;
+        $user->nik_user = $req->nik_user;
+        $user->nama_user = $req->nama_user;
+        $user->no_hp = $req->no_hp;
         $user->save();
         
         return redirect('/user')->with('message','edit');

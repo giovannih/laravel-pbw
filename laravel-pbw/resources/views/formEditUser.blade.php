@@ -1,10 +1,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <title>
-    Add User
+    Edit User
 </title>
-<form action="/user/save" method="POST" class="pt-2 pb-2">
+<form action="/user/update/{{$user->id}}" method="POST" class="pt-2 pb-2">
     @csrf
+    @method('PUT')
 <section class="vh-100" style="background-color:#B9E6FF;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">

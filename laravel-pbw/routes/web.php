@@ -36,6 +36,7 @@ Route::post('/user/save','AuthController@saveUser')->middleware('auth');
 Route::get('/','AuthController@login')->middleware('guest')->name('login');
 Route::post('/user/ceklogin','AuthController@ceklogin')->middleware('guest');
 Route::get('/user/edit/{id}','AuthController@editUser');
+Route::put('/user/update/{id}','AuthController@updateUser');
 Route::get('/user/delete/{id}','AuthController@deleteUser');
 Route::get('/logout','AuthController@logout')->middleware('auth');
 
