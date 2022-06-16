@@ -1,0 +1,109 @@
+@extends('layouts.main')
+@section('title', 'Mahasiswa')
+@section('content')
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">NIM</th>
+            <th scope="col">Nama Mahasiswa</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Jurusan</th>
+            <th scope="col">Bidang Minat</th>
+            <th scope="col">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($mahasiswa as $no => $d)
+            <tr>
+                <th scope="row">{{ $mahasiswa->firstItem() + $no }}</th>
+                <td>{{ $d->nim }}</td>
+                <td>{{ $d->nama }}</td>
+                <td>{{ $d->gender }}</td>
+                <td>{{ $d->jurusan }}</td>
+                <td>{{ $d->bidang_minat }}</td>
+                <td>
+                <a class="btn btn-outline-light" href="/mahasiswa/edit/{{ $d->id }}" role="button" style="background-color: #A89B8C;"><i class="bi bi-pencil-square"></i></a>
+                <a href="" class="btn btn-outline-light" style="background-color: #A89B8C;" data-toggle="modal" data-target="#popUp"><i class="bi bi-trash" ></i></a>
+                    <div class="modal fade" id="popUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>Are you sure you're going to delete this data?</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button class="btn btn-danger"><a style="color:#FFFFFF"href="/mahasiswa/delete/{{$d->id}}">Delete Data</a></button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+    </table>
+    <span class="float-right">{{ $mahasiswa->links() }}</span>
+@endsection
+@section('header')
+<div class="card-header" style="background-color: #CBC6B3;">
+<a name="" id="" class="btn btn-outline-light" href="/mahasiswa/add" role="button" style="background-color: #A89B8C;border-color: #A89B8C;"><i class="bi bi-plus-square"></i> ADD DATA</a>
+<form class="form-inline my-2 my-lg-0 float-right" method="GET" action="/mahasiswa/cari">
+<input class="form-control mr-sm-2" name= "cari" type="search" placeholder="Search" aria-label="Search">
+<button class="btn btn-outline-light my-2 my-sm-0" type="submit" style="background-color: #A89B8C;border-color: #A89B8C;">Search</button>
+</form>
+@endsection
+@section('alert')
+@if(session()->has('message'))
+    @if(session()->get('message') == 'test')
+        <div class="col-lg-12 py-4 align-self-center">
+        <div class="alert alert-success alert-dismissible fade show text-light" role="alert" style="background-color: #A89B8C;border-color: #A89B8C;">
+        <b>Data Input is Successful</b>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        </div>
+    @endif
+    @if(session()->get('message') == 'edit')
+        <div class="col-lg-12 py-4 align-self-center">
+        <div class="alert alert-success alert-dismissible fade show" style="color: #161925; background-color: #FEF3AF;border-color: #FEF3AF;" role="alert">
+        <b>Data Edit is Successful</b>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        </div>
+    @endif
+    @if(session()->get('message') == 'delete')
+        <div class="col-lg-12 py-4 align-self-center">
+        <div class="alert alert-success alert-dismissible fade show text-light" style="background-color: #F72631;border-color: #F72631;" role="alert">
+        <b>Data Deletion is Successful</b>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        </div>
+    @endif
+@endif
+@endsection
+@section('user')
+<div class="col-lg-12 py-2"style="background-color: #A89B8C;">
+                <div class="dropdown float-right">
+              <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gio
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="" type="button">{{Auth::user()->name ?? ''}}</button>
+                <a class="dropdown-item" href="/user" type="button">User Data</button>
+                <a class="dropdown-item" href="" type="button">Logout</button>
+              </div>
+            </div>
+              </div>
+@endsection
